@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DevToys.RowVersionConverter</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Version>0.1.0</Version>
+    <PackageId>DevToys.RowVersionConverter</PackageId>
+    <Title>DevToys.RowVersionConverter</Title>
+    <Description>DevToys extension for converting SQL Server RowVersion values between Base64, ULong, Hexadecimal, and Byte Array formats</Description>
+    <PackageProjectUrl>https://github.com/ioannis-thyris/DevToys.RowVersion</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ioannis-thyris/DevToys.RowVersion</RepositoryUrl>
+    <Authors>Ioannis Thyris</Authors>
+    <PackageTags>devtoys-app;DevToys</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../LICENSE.md" Link="docs\LICENSE.md" Pack="true" PackagePath="\" />
+    <None Include="../README.md" Link="docs\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
+    <ItemGroup>
+      <None Include="$(OutputPath)\**">
+        <Pack>true</Pack>
+        <PackagePath>lib\net8.0</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="DevToys.Api" Version="2.0.8-preview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="RowVersionConverterExtension.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RowVersionConverterExtension.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="RowVersionConverterExtension.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RowVersionConverterExtension.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
